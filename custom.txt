@@ -1,0 +1,28 @@
+math.js
+function add(a, b) {
+    return a + b;
+}
+
+function multiply(a, b) {
+    return a * b;
+}
+
+module.exports = { add, multiply };
+
+// server.js
+
+const http = require("http");
+const math = require("./math");   // importing custom module
+
+const server = http.createServer((req, res) => {
+    res.writeHead(200, { "Content-Type": "text/plain" });
+
+    let sum = math.add(10, 20);
+    let product = math.multiply(5, 7);
+
+    res.end("Sum = " + sum + "\nProduct = " + product);
+});
+
+server.listen(3000, () => {
+    console.log("Server running on http://localhost:3000");
+});
